@@ -24,7 +24,7 @@ linting:
     - for file in $(find ${CI_PROJECT_DIR} -iname *.yml; do yamllint -d relaxed $file; done
 
 validate_config:
-  image: chriscowley/kubernetes-validator:latesta
+  image: chriscowley/kubernetes-validator:latest
   stage: validate
   script:
     - for file in $(find ${CI_PROJECT_DIR} -iname *.yml; do kubeval $file; done
