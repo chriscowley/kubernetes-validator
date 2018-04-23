@@ -6,6 +6,7 @@ For now it contains:
 
 - [yamllint](https://github.com/adrienverge/yamllint)
 - [kubeval](https://github.com/garethr/kubeval)
+- [kubetest](https://github.com/garethr/kubetest)
 
 # How
 
@@ -28,4 +29,10 @@ validate_config:
   stage: validate
   script:
     - for file in $(find ${CI_PROJECT_DIR} -iname *.yml; do kubeval $file; done
+
+unit_tests:
+  image: chriscowley/kubernetes-validator:latest
+  stage: validate
+  script:
+    - for file in $(find ${CI_PROJECT_DIR} -iname *.yml; do kubetest --verbose $file; done
 ```
